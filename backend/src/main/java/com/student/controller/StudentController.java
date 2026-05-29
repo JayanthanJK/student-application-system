@@ -1,0 +1,40 @@
+package com.student.controller;
+
+import com.student.model.Student;
+import com.student.service.StudentService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+
+@CrossOrigin(origins = "http://localhost:5175")
+
+@RequestMapping("/students")
+
+public class StudentController {
+
+    @Autowired
+    private StudentService service;
+
+    @PostMapping
+
+    public Student addStudent(
+            @RequestBody Student student
+    ) {
+
+        return service.saveStudent(student);
+
+    }
+
+    @GetMapping
+
+    public List<Student> getStudents() {
+
+        return service.getAllStudents();
+
+    }
+
+}
